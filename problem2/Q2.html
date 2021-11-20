@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Find Next Day</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="main.css" />
+</head>
+
+<body>
+    <div class="container">
+        <form method=get name="form">
+            <h2>Enter Date:</h2>
+            <br />
+            <div class="date-input">
+                <div class="getDate">
+                    <label for="date">Date:</label>
+                    <input type="number" name="date" id="date" min="1" max="31" placeholder="DD" value=""
+                        onblur="validate()" />
+                    <label for="month">month:</label>
+                    <input type="number" name="month" id="month" min="1" max="12" placeholder="MM" value=""
+                        onblur="valimonth()" />
+                    <label for="year">year:</label>
+                    <input type="number" name="year" id="year" min="1800" max="2100" placeholder="YYYY" value=""
+                        onblur="valiyear()" />
+                </div>
+
+                <br />
+                <input type="button" name="submit" value="submit" onclick="currentDate()" />
+                <br>
+            </div>
+
+        </form>
+        <br>
+        <div class="answer" name="answer" value="">
+            Answer:<div id="answer">
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        function validate() {
+            var val1 = document.getElementById("date").value
+
+            if (val1 > 31 || val1 < 1) {
+                alert("Value of date is invalid it must be between 1 to 31");
+                console.log(val1)
+            }
+        }
+        function valimonth() {
+            var val2 = document.getElementById("month").value
+
+            if (val2 > 12 || val2 < 1 && 1 < val1 < 31) {
+                alert("Value of month is invalid it must be between 1 to 12");
+            }
+        }
+        function valiyear() {
+            var val3 = document.getElementById("year").value
+
+            if (val3 > 2100 || val3 < 1800 && 1 < val2 < 12) {
+                alert("Value of year is invalid it must be between 1800AD to 2100AD");
+            }
+        }
+
+        function currentDate() {
+            if (document.forms["form"]["date"].value == "" || document.forms["form"]["date"].value == "" || document.forms["form"]["date"].value == "") {
+                alert("empty");
+            }
+            var val1 = (document.getElementById("date").value)
+            var val2 = parseInt(document.getElementById("month").value)
+            var val3 = parseInt(document.getElementById("year").value)
+            day = `${val3}-${val2}-${val1}`
+
+            var tomorrow = new Date(day);
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            console.log(tomorrow.getDate(), tomorrow.getMonth(), tomorrow.getFullYear())
+            var answer = document.getElementById("answer")
+            answer.innerHTML = `${tomorrow.getDate()}/${tomorrow.getMonth() + 1}/${tomorrow.getFullYear()}`
+
+        }
+    </script>
+</body>
+
+</html>
